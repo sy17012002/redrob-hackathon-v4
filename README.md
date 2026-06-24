@@ -15,3 +15,10 @@ Our pipeline is designed for production-level speed and precision, completely by
 3. Install the required dependencies:
    ```bash
    pip install -r requirements.txt
+
+## Execution Command
+
+The ranking script requires explicitly declared flags for input and output pathways to ensure absolute sandbox test reproducibility. Execute the pipeline using the following single command format from the repository root:
+
+```bash
+python rank.py --candidates ./candidates.jsonl --out ./submission.csv
