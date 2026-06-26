@@ -3,3 +3,4 @@ faiss-cpu
 pandas
 torch
 openpyxl
+huggingface-hub
