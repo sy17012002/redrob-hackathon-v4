@@ -1,0 +1,76 @@
+
+# ============================================================================
+# Team identity
+# ============================================================================
+team_name: "XYZ001"  
+
+primary_contact:
+  name: "Sunny Yadav"
+  email: "sy17012002@gmail.com"   
+  phone: "+91-8957956212"        
+
+team_members:
+  - name: "Sunny Yadav"
+    email: "25mt0569@iitism.ac.in"
+    role: "Team Lead"         
+  - name: "Rajesh Khatri"
+    email: "25im0009@iitism.ac.in"
+    role: "ML Engineer"
+  
+
+# ============================================================================
+# Code and reproducibility
+# ============================================================================
+github_repo: https://github.com/sy17012002/redrob-hackathon-v4
+
+
+sandbox_link: https://huggingface.co/spaces/ssjsunny17/redrob-ranker
+
+
+reproduce_command: python rank.py --candidates ./candidates.jsonl --out ./submission.csv
+
+
+# ============================================================================
+# Compute environment
+# ============================================================================
+compute:
+  platform: "Asus Zenbook"                    
+  cpu_cores: 8                                  
+  ram_gb: 16                                    
+  python_version: "3.14.3"                      
+  os: "Windows 11"                              
+  uses_gpu_for_inference: false                 
+  has_network_during_ranking: false             
+  pre_computation_required: false               
+  pre_computation_time_minutes: 0               
+
+# ============================================================================
+# AI tools declaration
+# ============================================================================
+
+ai_tools_used: 
+  - "Gemini"       
+
+ai_usage_summary: |
+  Used Gemini for code completion and optimization and validating constraints against the submission specification. 
+  No candidate profiles or data sets were processed via external LLMs."
+
+# ============================================================================
+# Approach summary (optional but recommended)
+# ============================================================================
+methodology_summary: |
+  We utilized a high-speed Two-Stage Retrieval and Re-ranking funnel to stay strictly within the 5-minute CPU constraint while maintaining maximum semantic accuracy.
+  Stage 1 is a rapid lexical and heuristic screener that processes 100,000 raw JSON records, instantly applying a strict title-blacklist to eliminate non-technical honeypot profiles (e.g., HR, Sales, Civil Engineering). This stage scores candidates using AI/ML keyword density, exact experience brackets, and Tier-1 city location weights to extract an elite Top 400 cohort. 
+  Stage 2 passes only these 400 profiles into a local bge-small-en-v1.5 SentenceTransformer model on the CPU. By limiting the neural workload to 400 candidates instead of 100K, the dense vector FAISS index search executes in under 10 seconds. 
+  Final scores are scaled by recruiter response rate and GitHub activity (imputing neutral values for unlinked accounts to avoid penalizing private developers). 
+  The entire end-to-end pipeline executes flawlessly in ~30 seconds on a standard 2-core CPU
+
+# ============================================================================
+# Declarations
+# ============================================================================
+declarations:
+  read_submission_spec: true        
+  code_is_original_work: true       
+  no_collusion: true                
+  honeypot_check_done: true       
+  reproduction_tested: true         
